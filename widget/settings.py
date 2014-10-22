@@ -58,8 +58,12 @@ WSGI_APPLICATION = 'widget.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DBNAME', 'widget'),
+        'USER': os.getenv('DBUSER', 'postgres'),
+        'PASSWORD': os.getenv('DB_ENV_POSTGRES_PASS', 'test'),
+        'HOST': os.getenv('DB_PORT_5432_TCP_ADDR', 'localhost'),
+        'PORT': os.getenv('DB_PORT_5432_TCP_PORT', '5432')
     }
 }
 
