@@ -3,7 +3,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 urlpatterns = patterns('',
-    url(r'^widget/', 'widget.views.widget', name='widget'),
+    url(r'^widget/$', 'widget.views.widget', name='widget'),
+    url(r'^images/(?P<tag>\w+)?/?$', 'widget.views.images_by_tag', name='images_by_tag'),
 
     url(r'^admin/', include(admin.site.urls)),
 )
