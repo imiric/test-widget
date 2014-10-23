@@ -13,6 +13,10 @@
 </head>
 
 <body>
-    <p>Hello from the widget!</p>
+  <div>
+  {% for c in contents %}
+      <img alt="" src="{{ c.image.url }}">
+  {% endfor %}
+  </div>
 </body>
 </html>
