@@ -18,5 +18,16 @@
       <img alt="" src="{{ c.image.url }}">
   {% endfor %}
   </div>
+
+  <script>
+    function receiveMessage(event) {
+      var tag = event.data.tag;
+      if (!tag) {
+        return;
+      }
+    }
+
+    window.addEventListener('message', receiveMessage, false);
+  </script>
 </body>
 </html>
