@@ -13,18 +13,33 @@
 </head>
 
 <body>
-  <div>
+
+  <div id="images">
   {% for c in contents %}
       <img alt="" src="{{ c.image.url }}">
   {% endfor %}
   </div>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/reqwest/1.1.4/reqwest.js"></script>
   <script>
+    var imagesEl = document.getElementById('images');
+
     function receiveMessage(event) {
       var tag = event.data.tag;
       if (!tag) {
         return;
       }
+
+      reqwest({
+        url: '{% url 'images_by_tag' %}' + tag,
+        success: function(resp) {
+          var imgs = '';
+          for (var i=0; i < resp.data.length; i++) {
+            imgs = imgs + '<img alt="" src="' + resp.data[i] + '">';
+          }
+          imagesEl.innerHTML = imgs;
+        }
+      });
     }
 
     window.addEventListener('message', receiveMessage, false);
