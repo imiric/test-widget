@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Widget Test</title>
+  <meta name="description" content="Widget Test">
+  <meta name="author" content="Ivan Miric">
+</head>
+
+<body>
+  <!-- The widget iframe will be loaded here -->
+  <a id="widget" href="http://0c2355a3-imiric.node.tutum.io"></a>
+
+  <div class="controls">
+    <input id="tag" type="text">
+    <button id="load-tag">Load Tag</button>
+  </div>
+
+  <script src="http://0c2355a3-imiric.node.tutum.io/static/widget.js"></script>
+  <script>
+    var iframe = document.getElementById('widget').contentWindow,
+        button = document.getElementById('load-tag'),
+        tag = document.getElementById('tag');
+
+    button.onclick = function() {
+      iframe.postMessage({tag: tag.value}, 'http://0c2355a3-imiric.node.tutum.io');
+    }
+  </script>
+</body>
+</html>
